@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,8 +95,11 @@ public class MainActivity extends AppCompatActivity {
                                 for(int i =0; i<4; i++){
                                     String temp = temperatures.get(i);
                                     double prt = temps.getDouble(temp);
+                                    prt = prt - 273.15;
+                                    DecimalFormat df = new DecimalFormat("#.#");
+                                    prt = Double.parseDouble(df.format(prt));
                                     String prnt = Double.toString(prt);
-                                    prnt = placeholder.get(i)  + prnt;
+                                    prnt = placeholder.get(i)  + prnt + " C";
                                     prinTemperatures.add(prnt);
                                 }
                                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, prinTemperatures );
